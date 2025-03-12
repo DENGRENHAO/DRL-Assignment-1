@@ -11,15 +11,15 @@ GAMMA = 0.99  # Discount factor
 EPSILON = 0.1  # Exploration probability
 TAU = 0.005 # Soft update parameter
 
-Q_NETWORK_FILE = "q_network.pth"
+Q_NETWORK_FILE = "q_network_11000.pth"
 
 # Define the neural network
 class DQN(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(DQN, self).__init__()
-        self.fc1 = nn.Linear(state_dim, 128)
-        self.fc2 = nn.Linear(128, 128)
-        self.fc3 = nn.Linear(128, action_dim)
+        self.fc1 = nn.Linear(state_dim, 256)
+        self.fc2 = nn.Linear(256, 256)
+        self.fc3 = nn.Linear(256, action_dim)
     
     def forward(self, x):
         x = torch.relu(self.fc1(x))
@@ -83,6 +83,7 @@ def soft_update_target_network():
         target_state_dict[key] = q_state_dict[key] * TAU + target_state_dict[key] * (1 - TAU)
     target_network.load_state_dict(target_state_dict)
 
-def save_q_network():
+def save_q_network(episode):
     """Save the Q-network to a file."""
-    torch.save(q_network.state_dict(), Q_NETWORK_FILE)
+    # torch.save(q_network.state_dict(), Q_NETWORK_FILE)
+    torch.save(q_network.state_dict(), f"q_network_{episode}.pth")

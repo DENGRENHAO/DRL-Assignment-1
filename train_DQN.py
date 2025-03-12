@@ -5,9 +5,9 @@ from simple_custom_taxi_env import SimpleTaxiEnv
 from student_agent import get_action, update_q_network, soft_update_target_network, save_q_network
 
 # Training parameters
-NUM_EPISODES = 10000
-MAX_STEPS = 1000
-EPSILON_DECAY = 0.9995
+NUM_EPISODES = 20000
+MAX_STEPS = 2000
+EPSILON_DECAY = 0.99975
 MIN_EPSILON = 0.1
 EPSILON = 1.0
 BATCH_SIZE = 128
@@ -20,8 +20,8 @@ def train_agent():
     total_rewards = []
     
     for episode in range(NUM_EPISODES):
-        # grid_size = random.randint(5, 10)
-        grid_size = 5
+        grid_size = random.randint(5, 10)
+        # grid_size = 5
         env = SimpleTaxiEnv(grid_size=grid_size, fuel_limit=5000)
         obs, _ = env.reset()
         total_reward = 0
@@ -60,7 +60,9 @@ def train_agent():
             avg_reward = np.mean(total_rewards[-10:])
             avg_steps = np.mean(episode_steps[-10:])
             print(f"Episode {episode+1}/{NUM_EPISODES}, Avg Reward: {avg_reward:.2f}, Epsilon: {EPSILON:.3f}, Avg Steps: {avg_steps:.2f}")
-            save_q_network()
+        
+        if (episode + 1) % 1000 == 0:
+            save_q_network(episode + 1)
     
     # Save trained network after training
     # save_q_network()
