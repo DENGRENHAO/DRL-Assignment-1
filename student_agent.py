@@ -11,7 +11,7 @@ GAMMA = 0.99  # Discount factor
 EPSILON = 0.05  # Exploration probability
 TAU = 0.005 # Soft update parameter
 
-Q_NETWORK_FILE = "q_network_16000.pth"
+Q_NETWORK_FILE = "q_network_20000.pth"
 
 # Define the neural network
 class DQN(nn.Module):

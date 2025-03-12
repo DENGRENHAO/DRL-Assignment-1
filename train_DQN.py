@@ -5,13 +5,13 @@ from simple_custom_taxi_env import SimpleTaxiEnv
 from student_agent import get_action, update_q_network, soft_update_target_network, save_q_network
 
 # Training parameters
-NUM_EPISODES = 20000
+NUM_EPISODES = 30000
 MAX_STEPS = 2000
 EPSILON_DECAY = 0.99975
 # MIN_EPSILON = 0.1
 MIN_EPSILON = 0.05
 # EPSILON = 1.0
-EPSILON = 0.143
+EPSILON = 0.052
 BATCH_SIZE = 128
 
 # Experience replay buffer
@@ -21,7 +21,7 @@ def train_agent():
     global EPSILON
     total_rewards = []
     
-    for episode in range(16000, NUM_EPISODES):
+    for episode in range(20000, NUM_EPISODES):
         grid_size = random.randint(5, 10)
         # grid_size = 5
         env = SimpleTaxiEnv(grid_size=grid_size, fuel_limit=5000)
