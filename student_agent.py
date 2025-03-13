@@ -8,10 +8,10 @@ import torch.optim as optim
 # DQN parameters
 ALPHA = 0.001  # Learning rate
 GAMMA = 0.99  # Discount factor
-EPSILON = 0.05  # Exploration probability
+EPSILON = 0.00  # Exploration probability
 TAU = 0.005 # Soft update parameter
 
-Q_NETWORK_FILE = "q_network_18000.pth"
+Q_NETWORK_FILE = "q_network_22000.pth"
 
 # Define the neural network
 class DQN(nn.Module):
